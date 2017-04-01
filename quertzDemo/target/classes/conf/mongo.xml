@@ -14,7 +14,7 @@
     <mongo:db-factory dbname="${mongo.database}" mongo-ref="mongo" />
 
     <!-- 自动扫描以下包的类 -->
-    <mongo:mapping-converter base-package="org.simple.customer" />
+    <mongo:mapping-converter base-package="quertz.com" />
 
     <bean id="mappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" />
     <!-- 配置mongodb映射类型 -->

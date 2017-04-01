@@ -14,7 +14,7 @@
             http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
 
 	<!-- 实例化bean -->
-	<bean id="testMethodQuartz" class="org.simple.customer.TestQuartz" />
+	<bean id="testMethodQuartz" class="quertz.demo.test.TestQuartz" />
 	<!-- 实例化bean -->
 
 	<!-- 配置MethodInvokingJobDetailFactoryBean -->
@@ -29,7 +29,7 @@
 	<bean id="testTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="testTaskMethod" />
 		<!-- 每一分钟执行一次 -->
-		<property name="cronExpression" value="0/10 * * * * ?" />
+		<property name="cronExpression" value="0/5 * * * * ?" />
 	</bean>
 
 	<!-- 配置调度工厂 -->

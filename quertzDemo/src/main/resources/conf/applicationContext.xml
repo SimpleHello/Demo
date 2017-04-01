@@ -27,7 +27,7 @@
     <context:annotation-config />
     
     <!-- Spring服务组件扫描(排除@Controller相关组件) -->
-    <context:component-scan base-package="org.simple.customer"></context:component-scan>
+    <context:component-scan base-package="quertz.com"></context:component-scan>
     
     <!-- Imports user-definded @Repository beans that process database options -->
     <!--<bean id="mongoConfig" class="com.kongtrolink.scloud.mongo.config.MongoConfig" />-->
