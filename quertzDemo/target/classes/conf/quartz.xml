@@ -15,6 +15,9 @@
 
 	<!-- 实例化bean -->
 	<bean id="testMethodQuartz" class="quertz.demo.test.TestQuartz" />
+	
+	<!-- 实例化bean -->
+	<bean id="taskQuartzMananger" class="quertz.demo.test.TaskQuartzMananger" />
 	<!-- 实例化bean -->
 
 	<!-- 配置MethodInvokingJobDetailFactoryBean -->
