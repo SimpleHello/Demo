@@ -13,36 +13,17 @@
             http://www.springframework.org/schema/data/mongo 
             http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
 
-	<!-- 实例化bean -->
-	<bean id="testMethodQuartz" class="quertz.demo.test.TestQuartz" />
-	
-	<!-- 实例化bean -->
-	<bean id="taskQuartzMananger" class="quertz.demo.test.TaskQuartzMananger" />
-	<!-- 实例化bean -->
-
-	<!-- 配置MethodInvokingJobDetailFactoryBean -->
-	<bean id="testTaskMethod"
-		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="testMethodQuartz" />
-		<property name="targetMethod" value="TestMethod" />
-		<property name="concurrent" value="false" />
-	</bean>
-
-	<!-- 配置定时表达式 -->
-	<bean id="testTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="testTaskMethod" />
-		<!-- 每一分钟执行一次 -->
-		<property name="cronExpression" value="0/5 * * * * ?" />
-	</bean>
 
 	<!-- 配置调度工厂 -->
 	<bean id="testSchedulerFactoryBean"
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-		<property name="triggers">
-			<list>
-				<ref bean="testTaskTrigger" />
-			</list>
-		</property>
 	</bean>
 
+
+ <!--这个类是用来设置触发时间的， startJobs方法启动调度容器，然后按照上面触发器每隔1s执行所配置的myJob2.doSomething()方法 -->     
+    <bean id="quartzManager" class="quertz.demo.core.QuartzManager" lazy-init="false" init-method="startJobs" >  
+        <!--这个对象一定要注入，这样类才能进行管理，还有在类型要用get set方法，不然会报错。-->  
+        <property name="scheduler" ref="testSchedulerFactoryBean" />  
+    </bean>   
+    
 </beans>
