@@ -6,11 +6,11 @@
        xmlns:mongo="http://www.springframework.org/schema/data/mongo" 
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans 
-            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
             http://www.springframework.org/schema/aop 
-            http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
+            http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
             http://www.springframework.org/schema/context 
-            http://www.springframework.org/schema/context/spring-context-4.3.xsd 
+            http://www.springframework.org/schema/context/spring-context-4.2.xsd 
             http://www.springframework.org/schema/data/mongo 
             http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">  
     
@@ -27,13 +27,15 @@
     <context:annotation-config />
     
     <!-- Spring服务组件扫描(排除@Controller相关组件) -->
-    <context:component-scan base-package="quertz.com"></context:component-scan>
+    <context:component-scan base-package="quertz.demo"></context:component-scan>
     
     <!-- Imports user-definded @Repository beans that process database options -->
     <!--<bean id="mongoConfig" class="com.kongtrolink.scloud.mongo.config.MongoConfig" />-->
     <import resource="mongo.xml" />
      <!--<import resource="dubbo.xml" />-->
+     <import resource="activemq.xml" />
     <import resource="quartz.xml" />
+    
     <aop:aspectj-autoproxy/>
     
 </beans>

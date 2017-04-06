@@ -12,17 +12,17 @@ import quertz.demo.entity.log.JobRunningLogEntity;
 import quertz.demo.service.JobLogService;
 
 @Service
-public class TestQuartz2 implements Job{
+public class TestQuartz4 implements Job{
 
 	@Autowired
 	JobLogService logService;
 
 
     public void execute(JobExecutionContext jobExecutionContext) {
-    	JobRunningLogEntity entity = new JobRunningLogEntity("TestQuartz2","测试 2 跑批类","quertz.demo.test.TestQuartz2","","",new Date());
+    	JobRunningLogEntity entity = new JobRunningLogEntity("TestQuartz4","测试 4跑批类","quertz.demo.test.TestQuartz4","","",new Date());
     	try{
     		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        	System.out.println("**********测试 2 跑批类*** " +sdf.format(new Date()));
+        	System.out.println("**********测试 4 跑批类*** " +sdf.format(new Date()));
         	entity.setResult("success");
     	}catch(Exception e){
     		entity.setResult("fail");
