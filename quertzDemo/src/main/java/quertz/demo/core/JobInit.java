@@ -25,6 +25,11 @@ public class JobInit {
 	@Autowired
 	JobService jobService;
 	
+	/**
+	 * 服务启动 加载 预设 跑批任务
+	 * 任务JOb数  由 JobInitConfig 设定
+	 * 任务Job详情 若 db存在数据 取db数据。
+	 */
 	@PostConstruct  
     public void  init(){  
 		System.out.println("##服务开始 - 修改状态为 启动");

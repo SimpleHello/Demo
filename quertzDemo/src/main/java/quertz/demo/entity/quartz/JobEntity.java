@@ -135,4 +135,18 @@ public class JobEntity {
 		this.jobDescript = jobDescript;
 	}
 	
+	public JobEntity clone(){
+		JobEntity entity = new JobEntity();
+		entity.setCron(this.cron);
+		entity.setFirstTime(this.firstTime);
+		entity.setJobClass(this.jobClass);
+		entity.setJobDescript(this.jobDescript);
+		entity.setJobName(this.jobName);
+		entity.setJobGroupName(this.jobGroupName);
+		entity.setTriggerName(this.triggerName);
+		entity.setTriggerGroupName(this.triggerGroupName);
+		entity.setLastTime(this.lastTime);
+		entity.setStatus(this.status);	
+		return entity;
+	}
 }
