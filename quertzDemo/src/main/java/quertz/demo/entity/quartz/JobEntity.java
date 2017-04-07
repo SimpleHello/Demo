@@ -25,6 +25,9 @@ public class JobEntity {
 	private Date firstTime;// 第一次执行时间
 	private String status;// 运行状态 停止 / 启动
 
+	public JobEntity(){
+		
+	}
 	public JobEntity(String jobName,String jobDescript, String cron) {
 		this(jobName,jobDescript,cron,"启动");
 	}
