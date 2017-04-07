@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import quertz.demo.dao.QuartzJobDao;
+import quertz.demo.dao.JobDao;
 import quertz.demo.entity.quartz.JobEntity;
 import quertz.demo.service.JobService;
 
@@ -13,7 +13,7 @@ import quertz.demo.service.JobService;
 public class JobServiceImpl implements JobService {
 
 	@Autowired
-	QuartzJobDao dao;
+	JobDao dao;
 	
 	@Override
 	public void addJob(JobEntity entity) {

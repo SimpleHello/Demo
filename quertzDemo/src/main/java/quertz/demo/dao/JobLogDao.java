@@ -8,7 +8,7 @@ import quertz.demo.entity.log.JobRunningLogEntity;
 import quertz.demo.entity.log.JobUpdateLogEntity;
 
 @Repository
-public class QuartzJobLogDao {
+public class JobLogDao {
 	@Autowired
 	MongoTemplate mongoTemplate;
 

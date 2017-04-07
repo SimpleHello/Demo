@@ -3,7 +3,7 @@ package quertz.demo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import quertz.demo.dao.QuartzJobLogDao;
+import quertz.demo.dao.JobLogDao;
 import quertz.demo.entity.log.JobRunningLogEntity;
 import quertz.demo.entity.log.JobUpdateLogEntity;
 import quertz.demo.service.JobLogService;
@@ -12,7 +12,7 @@ import quertz.demo.service.JobLogService;
 public class JobLogServiceImpl implements JobLogService {
 	
 	@Autowired
-	QuartzJobLogDao dao;
+	JobLogDao dao;
 	
 	@Override
 	public void addUpdateLog(JobUpdateLogEntity entity) {

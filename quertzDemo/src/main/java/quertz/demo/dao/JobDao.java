@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import quertz.demo.entity.quartz.JobEntity;
 
 @Repository
-public class QuartzJobDao {
+public class JobDao {
 	@Autowired
 	MongoTemplate mongoTemplate;
 
