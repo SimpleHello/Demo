@@ -1,5 +1,6 @@
 package quertz.demo.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class QuartzJobDao {
 		Update update = new Update();
 		update.set("status", entity.getStatus());
 		update.set("cron", entity.getCron());
+		update.set("lastTime",new Date());
 		Query query = new Query();
 		Criteria cat = Criteria.where("_id").is(entity.getId());
 		query.addCriteria(cat);
@@ -51,6 +53,7 @@ public class QuartzJobDao {
 	public void updateStop(String status){
 		Update update = new Update();
 		update.set("status",status);
+		update.set("lastTime",new Date());
 		mongoTemplate.updateMulti(new Query(), update, JobEntity.namespace);
 	}
 }

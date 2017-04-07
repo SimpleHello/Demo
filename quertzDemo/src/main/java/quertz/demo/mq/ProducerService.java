@@ -15,7 +15,6 @@ public class ProducerService {
 
     @Resource(name="jmsTemplate")
     private JmsTemplate jmsTemplate;
-       
       /**
        * 向指定队列发送消息
        */
@@ -40,6 +39,5 @@ public class ProducerService {
           }
         });
      
-      }
-    
+      }        
 }
