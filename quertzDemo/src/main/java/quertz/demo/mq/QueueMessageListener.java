@@ -1,5 +1,8 @@
 package quertz.demo.mq;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
@@ -37,17 +40,21 @@ public class QueueMessageListener implements MessageListener {
     public void onMessage(Message message) {
         TextMessage tm = (TextMessage) message;
         try {
+        	Date messageTime = new Date(message.getJMSTimestamp());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         	MessageEntity entity = JSON.parseObject(tm.getText(),MessageEntity.class);
         	String jobName = entity.getJobName();
         	String type = entity.getType();
         	String cron = entity.getCron();
-            System.out.println(" 接收到：消息 id：" + entity.getId()+" jobName：" + jobName+"  Type：" + type +"  Cron：" + cron);
+            System.out.println("####接收到：消息时间"+sdf.format(messageTime) 
+            						+" id：" + entity.getId()+" jobName：" + jobName
+            						+"  Type：" + type +"  Cron：" + cron);
             JobUpdateLogEntity logEntity = new JobUpdateLogEntity(type);
             JobEntity query = new JobEntity(jobName,entity.getJobDescript(),entity.getCron());
             JobEntity dbEntity = jobService.find(query);
             if(dbEntity!=null){
             	logEntity.setJobId(dbEntity.getId());
-            	logEntity.setBeforeJob(new JobEntity(dbEntity.getJobName(),dbEntity.getJobDescript(),dbEntity.getCron(),dbEntity.getStatus()));
+            	logEntity.setBeforeJob(dbEntity.clone());
         	}
             if(type==null){
             	type = "";
