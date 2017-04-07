@@ -42,7 +42,7 @@ public class QueueMessageListener implements MessageListener {
         try {
         	Date messageTime = new Date(message.getJMSTimestamp());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        	MessageEntity entity = JSON.parseObject(tm.getText(),MessageEntity.class);
+        	JobMessageEntity entity = JSON.parseObject(tm.getText(),JobMessageEntity.class);
         	String jobName = entity.getJobName();
         	String type = entity.getType();
         	String cron = entity.getCron();
@@ -79,7 +79,7 @@ public class QueueMessageListener implements MessageListener {
     /**
      * 00 新增 JOB
      */
-    private void addJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,MessageEntity entity){	
+    private void addJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,JobMessageEntity entity){	
     	String jobName = entity.getJobName();
     	String cron = entity.getCron();
     	boolean cronOk = CronExpression.isValidExpression(cron);//验证时间格式 是否完成
@@ -95,7 +95,7 @@ public class QueueMessageListener implements MessageListener {
     /**
      * 01 启动 job
      */
-    private void startJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,MessageEntity entity){	
+    private void startJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,JobMessageEntity entity){	
     	if(dbEntity==null){
     		entity.setMes("该任务 不存在 请先进行创建 ");
     		producerService.sendMessage(JSON.toJSONString(entity));
@@ -115,7 +115,7 @@ public class QueueMessageListener implements MessageListener {
     /**
      * 30 修改 JOB 时间粒度
      */
-    private void updateJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,MessageEntity entity){
+    private void updateJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,JobMessageEntity entity){
     	boolean cronOk = CronExpression.isValidExpression(entity.getCron());//验证时间格式 是否完成
         if(dbEntity==null||!cronOk){
     		entity.setMes("该任务 不存在 请先进行创建"+" 或  时间粒度不符合规范:"+entity.getCron());
@@ -130,7 +130,7 @@ public class QueueMessageListener implements MessageListener {
     /**
      * 01 停止  JOB
      */
-    private void stopJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,MessageEntity entity){
+    private void stopJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,JobMessageEntity entity){
     	String mes = "";
     	if(dbEntity==null){
     		entity.setMes("该任务 不存在 请先进行创建 ");
@@ -152,7 +152,7 @@ public class QueueMessageListener implements MessageListener {
     /**
      * 11 停止并 删除  JOB
      */
-    private void delJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,MessageEntity entity){
+    private void delJob(JobEntity dbEntity,JobUpdateLogEntity logEntity,JobMessageEntity entity){
     	String mes = "";
     	if(dbEntity==null){
     		entity.setMes("该任务 不存在 无需删除操作");
@@ -173,7 +173,7 @@ public class QueueMessageListener implements MessageListener {
     /**
      * default 无效操作
      */
-    private void defaultJob(MessageEntity entity){
+    private void defaultJob(JobMessageEntity entity){
     	entity.setMes("操作类型 无效！");
 		producerService.sendMessage(JSON.toJSONString(entity));
     }

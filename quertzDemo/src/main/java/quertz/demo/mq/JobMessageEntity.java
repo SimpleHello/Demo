@@ -1,6 +1,6 @@
 package quertz.demo.mq;
 
-public class MessageEntity {
+public class JobMessageEntity {
 	
 	private String id;
 	private String jobName;
