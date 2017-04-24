@@ -13,7 +13,7 @@ public class SampleController  {
     @ResponseBody
     @RequestMapping(value = "/")
     String home() {   
-        return "Hello World!";
+        return "Hello World我是中耳年!";
     }
  
     public static void main(String[] args) throws Exception {

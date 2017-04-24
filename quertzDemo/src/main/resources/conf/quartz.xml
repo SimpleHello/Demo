@@ -39,11 +39,11 @@
 	<!-- 配置调度工厂 -->
 	<bean id="testSchedulerFactoryBean"	class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 	 	<property name="jobFactory" ref="jobFactory"></property> 
-	 	<!-- <property name="triggers">
+	 	 <property name="triggers">
 			<list>
 				<ref bean="testTaskTrigger" />
 			</list>
-		</property>  -->
+		</property>
 	</bean>
 
 
